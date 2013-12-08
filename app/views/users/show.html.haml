@@ -6,8 +6,25 @@ Hello
 Your email is
 =@user.email
 /.
-%br Upcoming events:
-%p
+%h3 Upcoming events:
+- if @event
+  %p
+    %b Title:
+    = @event.title
+  %p
+    %b Organizer(s):
+    = link_to @user.full_name, @user
+  %p
+    %b Location:
+    = @event.location
+  %p
+    %b Start:
+    = @event.start
+  %p
+    %b End:
+    = @event.end
+- else
+  %p None yet!
 %hr/
 %footer
   %p

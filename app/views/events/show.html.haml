@@ -4,6 +4,9 @@
   %b Title:
   = @event.title
 %p
+  %b Organizer(s):
+  = link_to @user.full_name, @user
+%p
   %b Location:
   = @event.location
 %p
