@@ -1,28 +1,27 @@
-%h1 Profile and Events
-%h2
 Hello
-= @user.first_name
+= @user.first_name + "!"
 %br
 Your email is
-=@user.email
-/.
-%h3 Upcoming events:
-- if @event
-  %p
-    %b Title:
-    = @event.title
-  %p
-    %b Organizer(s):
-    = link_to @user.full_name, @user
-  %p
-    %b Location:
-    = @event.location
-  %p
-    %b Start:
-    = @event.start
-  %p
-    %b End:
-    = @event.end
+=@user.email + "."
+%h2 Upcoming Events:
+- if @events
+  - @events.each do |e|
+    %p
+      %h3
+        = e.title
+    %p
+      %b Organizer(s):
+      //fix this
+      = link_to @user.full_name, @user
+    %p
+      %b Location:
+      = e.location
+    %p
+      %b Start:
+      = e.start
+    %p
+      %b End:
+      = e.end
 - else
   %p None yet!
 %hr/

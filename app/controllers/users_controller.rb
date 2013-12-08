@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = current_user
-    @event = Event.find(params[:id])
+    @events = @user.events
   end
 
   # GET /users/new
