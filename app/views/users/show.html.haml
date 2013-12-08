@@ -4,7 +4,7 @@ Hello
 Your email is
 =@user.email + "."
 %h2 Upcoming Events:
-- if @events
+- if @events.present?
   - @events.each do |e|
     %p
       %h3
@@ -23,10 +23,12 @@ Your email is
       %b End:
       = e.end
 - else
-  %p None yet!
+  %p
+  None yet! Want to
+  = link_to "make an event?", new_event_path
 %hr/
 %footer
   %p
   = link_to 'Edit', edit_user_path(@user)
   |
-  = link_to 'Back', users_path
+  = link_to 'Home', root_path

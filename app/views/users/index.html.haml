@@ -1,0 +1,30 @@
+%table
+  %thead
+    %tr
+      %th
+      %th Name
+      %th
+      %th
+      %th
+      %th
+      %th
+      %th
+      %th Email
+  %tbody
+    - @users.each do |user|
+      %tr
+        %td= link_to "+", user
+        %td= user.full_name
+        %td
+        %td
+        %td
+        %td
+        %td
+        %td
+        %td= user.email
+%hr/
+%footer
+  %p
+  = link_to 'Edit', edit_user_path(@user)
+  |
+  = link_to 'Home', root_path
