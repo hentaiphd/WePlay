@@ -1,0 +1,16 @@
+%h1 Profile and Events
+%h2
+Hello
+= @user.first_name
+%br
+Your email is
+=@user.email
+/.
+%br Upcoming events:
+%p
+%hr/
+%footer
+  %p
+  = link_to 'Edit', edit_user_path(@user)
+  |
+  = link_to 'Back', users_path

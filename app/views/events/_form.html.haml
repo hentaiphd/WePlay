@@ -1,0 +1,9 @@
+= simple_form_for(@event) do |f|
+  = devise_error_messages!
+
+  .form-inputs
+    = f.input :title
+    = f.input :location
+    = f.input :start, :as => :datetime_picker
+    = f.input :end, :as => :datetime_picker
+    = f.submit "Let's play!"

@@ -13,6 +13,9 @@ gem "haml-rails"
 gem 'simple_form'
 gem 'devise'
 
+# SORRY! But the 'datetimepicker-rails' name in RubyGems repo already taken.
+gem 'datetimepicker-rails', :require => 'datetimepicker-rails', :git => 'git://github.com/zpaulovics/datetimepicker-rails.git'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
