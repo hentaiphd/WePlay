@@ -6,4 +6,6 @@
     = f.input :location
     = f.input :start, :as => :datetime_picker
     = f.input :end, :as => :datetime_picker
+    //= f.input :user , :collection => User.all, as: :grouped_select, group_method: :first_name, prompt: 'Choose the attendees'
+    = f.association :user, label_method: :first_name, value_method: :id
     = f.submit "Let's play!"

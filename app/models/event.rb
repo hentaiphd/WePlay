@@ -1,7 +1,8 @@
 class Event < ActiveRecord::Base
   belongs_to :user
   belongs_to :game
-  #before_save :add_current_user
+  has_many :users
+  has_many :attendees
   validates :user_id, presence: true
 
   def add_current_user(user)

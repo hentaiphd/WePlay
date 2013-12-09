@@ -37,6 +37,11 @@ class EventsController < ApplicationController
         format.html { render action: 'new' }
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
+
+      attendees = Attendee.new
+      attendees.user_id = event_params[:user_id]
+      attendees.event_id = @event.id
+      attendees.save!
     end
   end
 

@@ -22,6 +22,10 @@ Your email is
     %p
       %b End:
       = e.end
+    - e.attendees.each do |attendee|
+      %p
+        %b Attendees:
+        = link_to User.find(attendee.user_id).full_name, User.find(attendee.user_id)
 - else
   %p
   None yet! Want to
