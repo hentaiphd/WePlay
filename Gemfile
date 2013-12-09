@@ -12,6 +12,7 @@ gem "twitter-bootstrap-rails"
 gem "haml-rails"
 gem 'simple_form'
 gem 'devise'
+gem 'jquery-turbolinks'
 
 # SORRY! But the 'datetimepicker-rails' name in RubyGems repo already taken.
 gem 'datetimepicker-rails', :require => 'datetimepicker-rails', :git => 'git://github.com/zpaulovics/datetimepicker-rails.git'
