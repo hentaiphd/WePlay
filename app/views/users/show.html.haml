@@ -1,16 +1,16 @@
-%h4
+%h3
   = image_tag avatar_url(current_user, 50)
   Hello
   = @user.first_name + "!"
   Your email is
   =@user.email + "."
   = link_to 'Edit your info?', edit_user_path(@user)
-%h2 Upcoming Events:
-%div
+%h4 Upcoming Events:
+%div{:class => "event"}
   - if @events.present?
     - @events.each do |e|
       %p
-        %h3
+        %h2
           = e.title
       %p
         %b Organizer(s):

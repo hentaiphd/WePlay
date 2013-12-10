@@ -26,11 +26,92 @@
 // If you'd like to override bootstrap's own variables, you can do so here as well
 // See http://twitter.github.com/bootstrap/customize.html#variables for their names and documentation
 //
-// Example:
-@linkColor: #ff0000;
 
-@color: #4D926F;
+body {
+  background: #ffffff;
+  margin: 60px;
 
-h2 {
-  color: @color;
+  h1 {
+    text-shadow: 1px 1px 8px rgba(150, 150, 150, 1);
+    margin-bottom: 10px;
+    font-size: 100px;
+    line-height: 1;
+    color: #000000;
+    letter-spacing: 1px;
+    font-family: century gothic;
+    font-weight: 100;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 90px;
+  }
+
+  h2 {
+    margin-top: 10px;
+    margin-bottom: -5px;
+    font-size: 25px;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  h3 {
+    margin-top: 30px;
+    margin-bottom: -5px;
+    font-size: 30px;
+    font-weight: 200;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  h4 { //this is for the events header
+    text-shadow: 1px 1px 8px rgba(150, 150, 150, 1);
+    margin-bottom: 10px;
+    font-size: 50px;
+    line-height: 1;
+    color: #000000;
+    letter-spacing: 1px;
+    font-family: century gothic;
+    font-weight: 100;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 90px;
+  }
+
+  p {
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  a {
+    color: #990000;
+  }
+
+  hr {
+    border-top: 8px dotted #eeeeee;
+  }
+
+  form {
+    text-align: left;
+    vertical-align: middle;
+  }
+
+  div {
+    .event{
+      background-color: #e6e6e6;
+      width: 40%;
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+      padding: 20px;
+    }
+  }
+}
+
+div {
+  .row-fluid {
+    background: #ffffff;
+
+    .span9 {
+      width: 100%;
+    }
+  }
 }

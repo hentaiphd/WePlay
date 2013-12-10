@@ -3,7 +3,7 @@
 %p Organize game nights and events in collaboration with your friends.
 %p
 - if user_signed_in?
-  %p Make an event!
+  %h3= link_to 'Make an event!', new_event_path
 - else
   = render "devise/registrations/form"
 %hr/
