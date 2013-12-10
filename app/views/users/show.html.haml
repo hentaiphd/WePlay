@@ -1,38 +1,39 @@
-Hello
-= @user.first_name + "!"
-%br
-Your email is
-=@user.email + "."
+%h4
+  = image_tag avatar_url(current_user, 50)
+  Hello
+  = @user.first_name + "!"
+  Your email is
+  =@user.email + "."
+  = link_to 'Edit your info?', edit_user_path(@user)
 %h2 Upcoming Events:
-- if @events.present?
-  - @events.each do |e|
-    %p
-      %h3
-        = e.title
-    %p
-      %b Organizer(s):
-      //fix this
-      = link_to @user.full_name, @user
-    %p
-      %b Location:
-      = e.location
-    %p
-      %b Start:
-      = e.start
-    %p
-      %b End:
-      = e.end
-    - e.attendees.each do |attendee|
+%div
+  - if @events.present?
+    - @events.each do |e|
       %p
-        %b Attendees:
-        = link_to User.find(attendee.user_id).full_name, User.find(attendee.user_id)
-- else
-  %p
-  None yet! Want to
-  = link_to "make an event?", new_event_path
+        %h3
+          = e.title
+      %p
+        %b Organizer(s):
+        //fix this
+        = link_to @user.full_name, @user
+      %p
+        %b Location:
+        = e.location
+      %p
+        %b Start:
+        = e.start
+      %p
+        %b End:
+        = e.end
+      - e.attendees.each do |attendee|
+        %p
+          %b Attendees:
+          = link_to User.find(attendee.user_id).full_name, User.find(attendee.user_id)
+  - else
+    %p
+    None yet! Want to
+    = link_to "make an event?", new_event_path
 %hr/
 %footer
   %p
-  = link_to 'Edit', edit_user_path(@user)
-  |
   = link_to 'Home', root_path
