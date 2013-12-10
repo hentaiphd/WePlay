@@ -29,6 +29,10 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
     @event.add_current_user(current_user)
 
+    @users = User.where(:id => params[:guests])
+    @event.users << @users
+    @event.users << current_user
+
     respond_to do |format|
       if @event.save
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
@@ -38,10 +42,11 @@ class EventsController < ApplicationController
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
 
-      attendees = Attendee.new
-      attendees.user_id = event_params[:user_id]
-      attendees.event_id = @event.id
-      attendees.save!
+      #@event.users.build(event_params[:user_ids])
+      #attendees = Attendee.new
+      #attendees.user_id = event_params[:user_id]
+      #attendees.event_id = @event.id
+      #attendees.save!
     end
   end
 

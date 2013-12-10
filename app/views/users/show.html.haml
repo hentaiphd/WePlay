@@ -25,10 +25,10 @@
       %p
         %b End:
         = e.end
-      - e.attendees.each do |attendee|
-        %p
-          %b Attendees:
-          = link_to User.find(attendee.user_id).full_name, User.find(attendee.user_id)
+      %p
+        %b Attendees:
+        - e.users.each do |attendee|
+          %p= link_to attendee.full_name, attendee
   - else
     %p
     None yet! Want to

@@ -1,8 +1,6 @@
 class Event < ActiveRecord::Base
-  belongs_to :user
+  has_and_belongs_to_many :users, :join_table => "events_users", :class_name => "User"
   belongs_to :game
-  has_many :users
-  has_many :attendees
   validates :user_id, presence: true
 
   def add_current_user(user)
