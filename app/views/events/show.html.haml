@@ -1,22 +1,28 @@
 %p#notice= notice
 
-%p
-  %b Title:
-  = @event.title
-%p
-  %b Organizer(s):
+%div{:class => "event"}
+  %p
+  %h6= @event.title
+  %p Tweet about your event!
+  %p
+    <a href="https://twitter.com/intent/tweet?button_hashtag=WePlay&text=My%20next%20game%20night%20is%20up%20on%20WePlay!" class="twitter-hashtag-button">Tweet #WePlay</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+  %h5 Organizer(s):
   //fix this
-  = link_to @user.full_name, @user
-%p
-  %b Location:
-  = @event.location
-%p
-  %b Start:
-  = @event.start
-%p
-  %b End:
-  = @event.end
+  %p= link_to @user.full_name, @user
+  %h5 Location:
+  %p= @event.location
+  %h5 Start:
+  %p= @event.start
+  %h5 End:
+  %p= @event.end
+  %h5 Attendees:
+  - @event.users.each do |attendee|
+    %p= link_to attendee.full_name, attendee
+  %h5 Games:
+  - @event.games.each do |game|
+    %p= game.name
 
-= link_to 'Edit', edit_event_path(@event)
-\|
-= link_to 'Home', root_path
+  = link_to 'Edit', edit_event_path(@event)
+  \|
+  = link_to 'Home', root_path

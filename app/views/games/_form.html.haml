@@ -1,0 +1,4 @@
+=simple_form_for(@game) do |f|
+  = devise_error_messages!
+  = f.input :name
+  = f.submit "Let's play!"
