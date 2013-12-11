@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_and_belongs_to_many :events, :join_table => "events_users", :class_name => "Event"
+  has_and_belongs_to_many :games
 
   def full_name
     return self.first_name + " " + self.last_name

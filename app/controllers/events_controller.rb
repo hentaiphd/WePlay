@@ -26,12 +26,18 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def create
+    params.permit!
     @event = Event.new(event_params)
     @event.add_current_user(current_user)
 
     @users = User.where(:id => params[:guests])
     @event.users << @users
+
+    #do I need this?
     @event.users << current_user
+
+    @games = Game.where(:id => params[:games])
+    @event.games << @games
 
     respond_to do |format|
       if @event.save
