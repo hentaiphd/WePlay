@@ -9,11 +9,20 @@
     //= f.input :user , :collection => User.all, as: :grouped_select, group_method: :first_name, prompt: 'Choose the attendees'
     //= f.association :users, label_method: :first_name, value_method: :id
     = f.label :users
-    = select_tag "guests", options_from_collection_for_select(User.all, 'id', 'first_name', @event.users.map{ |j| j.id }), :multiple => true
-    = f.label :games
-    -#if current_user.games
-      =# select_tag "games", options_from_collection_for_select(Game.all, 'id', 'name', @event.games.map{ |j| j.id }), :multiple => true
-    -#else
-      //Looks like you have no games saved--care to add some?
-      =# render 'games/form'
-    = f.submit "Let's play!"
+    //TODO hide current user
+    = select_tag "guests", options_from_collection_for_select(User.all, 'id', 'first_name', @event.users.map{ |j| if j.id == current_user.id then nil else j.id end }), :multiple => true
+    -if current_user.games.present?
+      = f.label :games
+      = select_tag "games", options_from_collection_for_select(Game.all, 'id', 'name', @event.games.map{ |j| j.id }), :multiple => true
+      %p
+      = f.submit "Let's play!"
+    -else
+      %p
+      = f.submit "Let's play!"
+      %p
+      Tip: Looks like you have no games saved.
+      %p
+      Make your event and then
+      = link_to "tell us what games you have.", new_game_path, :target => "blank"
+      Edit your event later to add your new games!
+

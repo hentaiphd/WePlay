@@ -26,12 +26,14 @@
           = link_to "WePlay", root_path, :class => "brand"
           .nav-collapse
             %ul.nav
-              %li.active
+              %li
                 = link_to "Home", root_path
               %li
                 = link_to "Make Event", new_event_path
               %li
-                = link_to "My Events", current_user
+                = link_to "My Events", events_path
+              %li
+                = link_to "My Games", games_path
               %li
                 = link_to "Users", users_path
             %p.navbar-text.pull-right
@@ -40,9 +42,9 @@
                 = link_to current_user.first_name, current_user
                 or
                 = link_to 'Logout', destroy_user_session_path, :method => :delete
+                = image_tag avatar_url(current_user, 30)
               - else
                 = link_to 'Login', new_user_session_path
-          / /.nav-collapse
     .container-fluid
       .row-fluid
         .span9

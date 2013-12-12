@@ -1,17 +1,23 @@
-%h1 Listing games
+%p#notice= notice
 
-%table
-  %tr
-    %th
-    %th
-    %th
-
-  - @games.each do |game|
-    %tr
-      %td= link_to 'Show', game
-      %td= link_to 'Edit', edit_game_path(game)
-      %td= link_to 'Destroy', game, :method => :delete, :data => { :confirm => 'Are you sure?' }
+%h4 Listing games
+%div{:class => "event"}
+  %table
+    %thead
+      %tr
+        %th
+        %th
+      %tbody
+      - @user.games.each do |game|
+        %tr
+          %td{:width => "80%"}
+            %p= link_to game.name, game
+          %td
+          %td
+            %p= link_to 'Edit |', edit_game_path(game)
+          %td
+            %p= link_to ' Destroy', game, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
 
-= link_to 'New Game', new_game_path
+%p= link_to 'New Game', new_game_path

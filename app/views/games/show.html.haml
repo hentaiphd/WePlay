@@ -1,6 +1,21 @@
 %p#notice= notice
 
+%h4 Listing games
 
-= link_to 'Edit', edit_game_path(@game)
-\|
-= link_to 'Back', games_path
+%table
+  %tr
+    %th
+    %th
+    %th
+    %tr
+      %td
+      %p= link_to @game.name
+
+%br
+
+%p
+  =link_to 'Edit', edit_game_path(@game)
+  \|
+  = link_to 'Back', games_path
+  \|
+  = link_to 'Add New', new_game_path

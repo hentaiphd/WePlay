@@ -1,10 +1,12 @@
 class GamesController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_game, only: [:show, :edit, :update, :destroy]
 
   # GET /games
   # GET /games.json
   def index
     @games = Game.all
+    @user = current_user
   end
 
   # GET /games/1
@@ -26,14 +28,15 @@ class GamesController < ApplicationController
   def create
     params.permit!
     @game = Game.new(game_params)
+    @user = current_user
+
+    @user.games << @game
 
     respond_to do |format|
       if @game.save
-        format.html { redirect_to @game, notice: 'Game was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @game }
+        format.html { redirect_to games_path, notice: 'Game was successfully created.' }
       else
         format.html { render action: 'new' }
-        format.json { render json: @game.errors, status: :unprocessable_entity }
       end
     end
   end
