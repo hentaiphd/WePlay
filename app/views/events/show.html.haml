@@ -20,9 +20,16 @@
   - @event.users.each do |attendee|
     %p= link_to attendee.full_name, attendee
   %h5 Games:
-  - @event.games.each do |game|
-    %p= game.name
-
+  -if current_user.games.present?
+    - @event.games.each do |game|
+      %p= game.name
+  - else
+    %p
+    Tip: Looks like you have no games saved.
+    %p
+    = link_to "Tell us what games you have", new_game_path, :target => "blank"
+    and edit your event later to add your new games!
+  %p
   = link_to 'Edit', edit_event_path(@event)
   \|
   = link_to 'Home', root_path

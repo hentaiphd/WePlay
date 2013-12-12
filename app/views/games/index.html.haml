@@ -8,16 +8,19 @@
         %th
         %th
       %tbody
-      - @user.games.each do |game|
-        %tr
+      -if current_user.games.present?
+        - @user.games.each do |game|
+          %tr
           %td{:width => "80%"}
-            %p= link_to game.name, game
+            %p= game.name
           %td
           %td
             %p= link_to 'Edit |', edit_game_path(game)
           %td
             %p= link_to ' Destroy', game, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
+      - else
+        %p
+          None yet!
+          =link_to "Add some?", new_game_path
 %br
-
 %p= link_to 'New Game', new_game_path
