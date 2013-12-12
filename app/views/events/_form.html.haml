@@ -11,5 +11,9 @@
     = f.label :users
     = select_tag "guests", options_from_collection_for_select(User.all, 'id', 'first_name', @event.users.map{ |j| j.id }), :multiple => true
     = f.label :games
-    = select_tag "games", options_from_collection_for_select(Game.all, 'id', 'name', @event.games.map{ |j| j.id }), :multiple => true
+    -#if current_user.games
+      =# select_tag "games", options_from_collection_for_select(Game.all, 'id', 'name', @event.games.map{ |j| j.id }), :multiple => true
+    -#else
+      //Looks like you have no games saved--care to add some?
+      =# render 'games/form'
     = f.submit "Let's play!"

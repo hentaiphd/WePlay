@@ -36,6 +36,7 @@
           Games:
         - e.games.each do |game|
           %p= game.name
+        %h5= link_to 'Update this event?', edit_event_path(e)
   - else
     %p
     None yet! Want to
