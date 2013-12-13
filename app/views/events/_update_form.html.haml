@@ -1,0 +1,27 @@
+= simple_form_for(@event) do |f|
+  = devise_error_messages!
+
+  .form-inputs
+    = f.input :title
+    = f.input :location
+    = f.input :start, :as => :datetime_picker
+    = f.input :end, :as => :datetime_picker
+    //= f.input :user , :collection => User.all, as: :grouped_select, group_method: :first_name, prompt: 'Choose the attendees'
+    //= f.association :users, label_method: :first_name, value_method: :id
+    = f.label :users
+    = select_tag "guests", options_from_collection_for_select(except_current_user, 'id', 'full_name', @event.users.map{ |j| if j.id == current_user.id then nil else j.id end }), :multiple => true
+    -if current_user.games.present?
+      = f.label :bringing_any_games?
+      = select_tag "games", options_from_collection_for_select(users_games, 'id', 'name', @event.games.map{ |j| j.id }), :multiple => true
+      %p
+      = f.submit "Let's play!"
+    -else
+      %p
+      = f.submit "Let's play!"
+      %p
+      Tip: Looks like you have no games saved.
+      %p
+      Make your event and then
+      = link_to "tell us what games you have.", new_game_path, :target => "blank"
+      Edit your event later to add your new games!
+

@@ -5,7 +5,9 @@
 - if user_signed_in?
   %h3= link_to 'Make an event!', new_event_path
 - else
-  = render "devise/registrations/form"
+  %h3
+  %p
+    = render "devise/registrations/form"
 %hr/
 %footer
   %p &copy; Nina Freeman 2013

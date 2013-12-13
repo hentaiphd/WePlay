@@ -1,6 +1,6 @@
 %h4 Hosting
 %div{:class => "event"}
-  - if @user.events
+  - if @user.events.present?
     - @user.events.each do |e|
       - if e.host == @user.full_name
         %p
@@ -31,14 +31,14 @@
           - e.games.each do |game|
             %p= game.name
           %h5= link_to 'Update this event?', edit_event_path(e)
-      - else
-        %p
-          None yet! Want to
-          = link_to "make an event?", new_event_path
+  - else
+    %p
+      None yet! Want to
+      = link_to "make an event?", new_event_path
 
 %h4 Attending
 %div{:class => "event"}
-  - if @user.events
+  - if @user.events.present?
     - @user.events.each do |e|
       - if e.host != @user.full_name
         %p

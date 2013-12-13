@@ -2,41 +2,33 @@ class EventsController < ApplicationController
   before_filter :authenticate_user!
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
-  # GET /events
-  # GET /events.json
   def index
     @events = Event.all
     @user = current_user
   end
 
-  # GET /events/1
-  # GET /events/1.json
   def show
     @user = current_user
   end
 
-  # GET /events/new
   def new
     @event = Event.new
   end
 
-  # GET /events/1/edit
   def edit
   end
 
-  # POST /events
-  # POST /events.json
   def create
     params.permit!
     @event = Event.new(event_params)
     @event.add_current_user(current_user)
     @event.host = current_user.full_name
 
-    @users = User.where(:id => params[:guests])
-    @event.users << @users
-
     #do I need this?
     @event.users << current_user
+
+    @users = User.where(:id => params[:guests])
+    @event.users << @users
 
     @games = Game.where(:id => params[:games])
     @event.games << @games
@@ -52,11 +44,27 @@ class EventsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /events/1
-  # PATCH/PUT /events/1.json
   def update
+    params.permit!
+    @event = Event.find(params[:id])
+
+    @param_guest = params[:guests]
+    @param_game = params[:games]
+
+    if @param_guest.present?
+      @users = User.where(:id => params[:guests])
+      @event.users.clear
+      @event.users << @users
+    end
+
+    if @param_game.present?
+      @games = Game.where(:id => params[:games])
+      @event.games.clear
+      @event.games << @games
+    end
+
     respond_to do |format|
-      if @event.update(event_params)
+      if @event.update_attributes(params[:event])
         format.html { redirect_to @event, notice: 'Event was successfully updated.' }
         format.json { head :no_content }
       else
@@ -66,8 +74,6 @@ class EventsController < ApplicationController
     end
   end
 
-  # DELETE /events/1
-  # DELETE /events/1.json
   def destroy
     @event.destroy
     respond_to do |format|
@@ -82,7 +88,6 @@ class EventsController < ApplicationController
       @event = Event.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
       params.require(:event).permit(:title, :location, :start, :end, :user_id, :game_id)
     end
