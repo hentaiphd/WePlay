@@ -30,6 +30,7 @@ class EventsController < ApplicationController
     params.permit!
     @event = Event.new(event_params)
     @event.add_current_user(current_user)
+    @event.host = current_user.full_name
 
     @users = User.where(:id => params[:guests])
     @event.users << @users
@@ -48,12 +49,6 @@ class EventsController < ApplicationController
         format.html { render action: 'new' }
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
-
-      #@event.users.build(event_params[:user_ids])
-      #attendees = Attendee.new
-      #attendees.user_id = event_params[:user_id]
-      #attendees.event_id = @event.id
-      #attendees.save!
     end
   end
 
