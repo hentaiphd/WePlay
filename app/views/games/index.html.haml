@@ -15,8 +15,6 @@
             %p= game.name
           %td
           %td
-            %p= link_to 'Edit |', edit_game_path(game)
-          %td
             %p= link_to ' Destroy', game, :method => :delete, :data => { :confirm => 'Are you sure?' }
       - else
         %p
