@@ -11,8 +11,8 @@
     = f.label :users
     = select_tag "guests", options_from_collection_for_select(except_current_user, 'id', 'full_name', @event.users.map{ |j| if j.id == current_user.id then nil else j.id end }), :multiple => true
     -if current_user.games.present?
-      = f.label :games
-      = select_tag "games", options_from_collection_for_select(Game.all, 'id', 'name', @event.games.map{ |j| j.id }), :multiple => true
+      = f.label :bringing_any_games?
+      = select_tag "games", options_from_collection_for_select(users_games, 'id', 'name', @event.games.map{ |j| j.id }), :multiple => true
       %p
       = f.submit "Let's play!"
     -else
