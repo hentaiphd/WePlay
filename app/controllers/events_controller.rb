@@ -53,13 +53,15 @@ class EventsController < ApplicationController
 
     if @param_guest.present?
       @users = User.where(:id => params[:guests])
-      @event.users.clear
+      #@event.users.clear
+      @event.users.delete(@users)
       @event.users << @users
     end
 
     if @param_game.present?
       @games = Game.where(:id => params[:games])
-      @event.games.clear
+      #@event.games.clear
+      @event.games.delete(@games)
       @event.games << @games
     end
 

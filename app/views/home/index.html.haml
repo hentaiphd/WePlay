@@ -2,8 +2,12 @@
 %h2 It's always time for game night.
 %p Organize game nights and events in collaboration with your friends.
 %p
+%p#notice= notice
 - if user_signed_in?
-  %h3= link_to 'Make an event!', new_event_path
+  %h3
+    = link_to 'Add games', new_game_path
+    and then
+    = link_to 'make an event!', new_event_path
 - else
   %h3
   %p
