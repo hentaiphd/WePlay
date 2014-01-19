@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   has_and_belongs_to_many :events, :join_table => "events_users", :class_name => "Event"
   has_and_belongs_to_many :games
+  has_many :hosts
 
   def full_name
     return self.first_name + " " + self.last_name

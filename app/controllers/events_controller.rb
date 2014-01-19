@@ -13,6 +13,7 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
+    @users = User.all
   end
 
   def edit
@@ -22,7 +23,6 @@ class EventsController < ApplicationController
     params.permit!
     @event = Event.new(event_params)
     @event.add_current_user(current_user)
-    @event.host = current_user.full_name
 
     #do I need this?
     @event.users << current_user
@@ -35,6 +35,20 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
+
+        @current_user_host = Host.new
+        @current_user_host.user_id = current_user.id
+        @current_user_host.event_id = @event.id
+        @current_user_host.save!
+
+        params[:host].each do |id|
+          u = User.find(id.to_i)
+          @host = Host.new
+          @host.user_id = u.id
+          @host.event_id = @event.id
+          @host.save!
+        end
+
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
         format.json { render action: 'show', status: :created, location: @event }
       else
